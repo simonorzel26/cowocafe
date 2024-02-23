@@ -17,13 +17,18 @@ import { UserNav } from "@/components/molecules/user-nav"
 import { Overview } from "@/components/molecules/overview"
 import { RecentSales } from "@/components/molecules/recent-sales"
 import { CalendarDateRangePicker } from "@/components/molecules/date-range-picker"
+import { getServerAuthSession } from "@/server/auth"
+import { unstable_noStore as noStore } from "next/cache";
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "Example dashboard app built using the components.",
 }
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  noStore();
+  const session = await getServerAuthSession();
   return (
     <>
       <div className="md:hidden">
@@ -49,7 +54,18 @@ export default function DashboardPage() {
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
               <Search />
+              {session ?(
               <UserNav />
+              ):(
+              <Link
+              href={session ? "/api/auth/signout" : "/api/auth/signin"}
+              >
+                <Button>
+                  Sign in
+                </Button>
+              </Link>
+              )}
+              
             </div>
           </div>
         </div>
