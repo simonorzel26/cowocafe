@@ -20,6 +20,9 @@ import { CalendarDateRangePicker } from "@/components/molecules/date-range-picke
 import { getServerAuthSession } from "@/server/auth"
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link"
+import { Input } from "@/components/ui/input"
+import { AccessibilityIcon, ActivityLogIcon } from "@radix-ui/react-icons"
+import { MergeIcon, UserIcon, VideoIcon } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -69,155 +72,158 @@ export default async function DashboardPage() {
             </div>
           </div>
         </div>
-        <div className="flex-1 space-y-4 p-8 pt-6">
-          <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-            <div className="flex items-center space-x-2">
-              <CalendarDateRangePicker />
-              <Button>Download</Button>
+        <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+          <div className="container flex flex-col items-center justify-center space-y-4 px-4 md:px-6">
+            <div className="space-y-2 text-center">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Work together, anywhere</h1>
+              <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                The platform for remote collaboration. Access a global network of workspaces, connect with like-minded
+                professionals, and supercharge your productivity.
+              </p>
+            </div>
+            <div className="mx-auto w-full max-w-sm space-y-2">
+              <form className="flex flex-col gap-2 min-[400px]:flex-row">
+                <Input className="max-w-lg flex-1" placeholder="Enter your email" type="email" />
+                <Button type="submit">Sign Up</Button>
+              </form>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Sign up to get notified when we launch.
+                <Link className="underline underline-offset-2" href="#">
+                  Terms & Conditions
+                </Link>
+              </p>
             </div>
           </div>
-          <Tabs defaultValue="overview" className="space-y-4">
-            <TabsList>
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="analytics" disabled>
-                Analytics
-              </TabsTrigger>
-              <TabsTrigger value="reports" disabled>
-                Reports
-              </TabsTrigger>
-              <TabsTrigger value="notifications" disabled>
-                Notifications
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="overview" className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      Total Revenue
-                    </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">$45,231.89</div>
-                    <p className="text-xs text-muted-foreground">
-                      +20.1% from last month
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      Subscriptions
-                    </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">+2350</div>
-                    <p className="text-xs text-muted-foreground">
-                      +180.1% from last month
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Sales</CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                      <rect width="20" height="14" x="2" y="5" rx="2" />
-                      <path d="M2 10h20" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">+12,234</div>
-                    <p className="text-xs text-muted-foreground">
-                      +19% from last month
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      Active Now
-                    </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">+573</div>
-                    <p className="text-xs text-muted-foreground">
-                      +201 since last hour
-                    </p>
-                  </CardContent>
-                </Card>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
+            <div className="space-y-3">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">The Future of Work</h2>
+              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                Experience the benefits of coworking, from increased productivity to expanded networks, from the comfort
+                of your home.
+              </p>
+            </div>
+            <div className="mx-auto w-full max-w-2xl grid gap-4 lg:max-w-5xl lg:grid-cols-3 lg:gap-6">
+              <div className="flex flex-col items-center space-y-2">
+                <VideoIcon className="w-12 h-12 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" />
+                <h3 className="text-xl font-bold">Connect</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Make new connections</p>
               </div>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                <Card className="col-span-4">
-                  <CardHeader>
-                    <CardTitle>Overview</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pl-2">
-                    <Overview />
-                  </CardContent>
-                </Card>
-                <Card className="col-span-3">
-                  <CardHeader>
-                    <CardTitle>Recent Sales</CardTitle>
-                    <CardDescription>
-                      You made 265 sales this month.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <RecentSales />
-                  </CardContent>
-                </Card>
+              <div className="flex flex-col items-center space-y-2">
+                <MergeIcon className="w-12 h-12 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" />
+                <h3 className="text-xl font-bold">Collaborate</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Work together seamlessly</p>
               </div>
-            </TabsContent>
-          </Tabs>
-        </div>
+              <div className="flex flex-col items-center space-y-2">
+                <ActivityLogIcon className="w-12 h-12 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" />
+                <h3 className="text-xl font-bold">Focus</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Boost your productivity</p>
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <UserIcon className="w-12 h-12 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" />
+                <h3 className="text-xl font-bold">Engage</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Be part of a community</p>
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <AccessibilityIcon className="w-12 h-12 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" />
+                <h3 className="text-xl font-bold">Adapt</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Embrace flexibility</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+          <div className="container grid items-center gap-6 px-4 text-center md:px-6">
+            <div className="space-y-2 justify-center">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">The Perfect Workspace</h2>
+              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                Tour the best coworking spaces around the world. From stylish urban hubs to tranquil retreats, find the
+                perfect space to inspire your best work.
+              </p>
+            </div>
+            <div className="mx-auto grid max-w-5xl items-center gap-6 lg:grid-cols-1 lg:gap-12">
+              <div className="flex flex-col justify-center space-y-4">
+                <ul className="grid gap-6">
+                  <li>
+                    <div className="grid gap-1">
+                      <h3 className="text-xl font-bold">Inspiration</h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        Find your muse in a space designed for creativity.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="grid gap-1">
+                      <h3 className="text-xl font-bold">Tranquility</h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        Escape the hustle and bustle in a peaceful oasis.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="grid gap-1">
+                      <h3 className="text-xl font-bold">Productivity</h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        Get down to work in a space designed for focus.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
+            <div className="space-y-3">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Meet our Members</h2>
+              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                Trusted by the best teams in the world. We help teams of all sizes.
+              </p>
+            </div>
+            <div className="mx-auto w-full max-w-5xl grid gap-6 items-center justify-center [&>img]:mx-auto">
+            
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 border-t">
+          <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+            <div className="space-y-3">
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Experience the workflow the best frontend teams love.
+              </h2>
+              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                Let your team focus on shipping features instead of managing infrastructure with automated CI/CD.
+              </p>
+            </div>
+            <div className="mx-auto w-full max-w-sm space-y-2">
+              <form className="flex space-x-2">
+                <Input className="max-w-lg flex-1" placeholder="Enter your email" type="email" />
+                <Button type="submit">Sign Up</Button>
+              </form>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Sign up to get notified when we launch.
+                <Link className="underline underline-offset-2" href="#">
+                  Terms & Conditions
+                </Link>
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+        <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Acme Inc. All rights reserved.</p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Terms of Service
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Privacy
+          </Link>
+        </nav>
+      </footer>
       </div>
     </>
   )
