@@ -6,12 +6,11 @@ import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link"
 import { CoffeeIcon, GroupIcon, HeartIcon, PlaneIcon, PowerIcon, WifiIcon } from "lucide-react"
 import dynamic from "next/dynamic"
-import { EmailList } from "./_components/email-list"
 import CafeMap from "@/components/molecules/map";
 
 export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Example dashboard app built using the components.",
+  title: "CoWoCafe",
+  description: "The platform for remote collaboration. Access a global network of workspaces, connect with like-minded professionals, and supercharge your productivity.",
 }
 const SignInButton = dynamic(() => import('@/components/atoms/SignInButton'), {
   ssr: false,
@@ -39,7 +38,7 @@ export default async function DashboardPage() {
           </div>
         </div>
         <main className="flex-1">
-        <CafeMap lat={50.933594} lng={6.961899} zoom={12} />
+        <CafeMap lat={52.515} lng={13.39} zoom={11} />
         <section className="w-full py-12 md:py-16 lg:py-20 xl:py-24">
           <div className="container flex flex-col items-center justify-center space-y-4 px-4 md:px-6">
             <div className="space-y-2 text-center">
