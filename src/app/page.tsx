@@ -4,7 +4,7 @@ import { UserNav } from "@/components/molecules/user-nav"
 import { getServerAuthSession } from "@/server/auth"
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link"
-import { CoffeeIcon, GroupIcon, HeartIcon, PowerIcon, WifiIcon } from "lucide-react"
+import { CoffeeIcon, GroupIcon, HeartIcon, PlaneIcon, PowerIcon, WifiIcon } from "lucide-react"
 import dynamic from "next/dynamic"
 import { EmailList } from "./_components/email-list"
 import CafeMap from "@/components/molecules/map";
@@ -40,7 +40,7 @@ export default async function DashboardPage() {
         </div>
         <main className="flex-1">
         <CafeMap lat={50.933594} lng={6.961899} zoom={12} />
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 pt-0 md:pt-0 lg:pt-8 xl:pt-8">
+        <section className="w-full py-12 md:py-16 lg:py-20 xl:py-24">
           <div className="container flex flex-col items-center justify-center space-y-4 px-4 md:px-6">
             <div className="space-y-2 text-center">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Work together, anywhere</h1>
@@ -49,14 +49,11 @@ export default async function DashboardPage() {
                 professionals, and supercharge your productivity.
               </p>
             </div>
-            {!session && (
-              <div className="mx-auto w-full max-w-sm space-y-2">
-                <EmailList />
-              </div>
-            )}
+            
+            <SignInButton></SignInButton>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section className="w-full py-12 md:py-16 lg:py-20 xl:py-24 bg-gray-100 dark:bg-gray-800">
           <div className="container grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
             <div className="space-y-3">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Discover Your Next Workspace</h2>
@@ -89,6 +86,11 @@ export default async function DashboardPage() {
                 <HeartIcon className="w-12 h-12 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" />
                 <h3 className="text-xl font-bold">Work in Comfort</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Choose a space that suits your work style</p>
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <PlaneIcon className="w-12 h-12 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" />
+                <h3 className="text-xl font-bold">Work and Travel</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Travel freely knowing you will always have a desk</p>
               </div>
             </div>
           </div>
